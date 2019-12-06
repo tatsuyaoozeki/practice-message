@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  before_action :set_blog, only: [:show]
+  before_action :set_blog, only: [:show, :edit, :update, :destroy]
   def index
     @blogs = Blog.all
   end
@@ -18,7 +18,23 @@ class BlogsController < ApplicationController
   end
 
   def show
-    @blog = Blog.find(params[:id])
+    # @blog = Blog.find(params[:id])
+  end
+
+  def edit
+
+  end
+
+  def update
+    if @blog.update
+      redirect_to blogs_path, notice: "ブログを編集しました！"
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+
   end
 
   private
@@ -28,6 +44,6 @@ class BlogsController < ApplicationController
   end
 
   def set_blog
-    @blog = Blog.find([params[:id]])
+    @blog = Blog.find(params[:id])
   end
 end
