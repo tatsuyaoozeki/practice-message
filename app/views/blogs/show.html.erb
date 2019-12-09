@@ -1,3 +1,21 @@
-<h1>ブログ詳細画面</h1>
-<p>タイトル: <%= @blog.title %></p>
-<p>内容: <%= @blog.content %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <div class="blog_text">
+    <p><strong>タイトル</strong><%= @blog.title %></p>
+    <p><strong>内容</strong><%= @blog.content %></p>
+  </div>
+
+  <p>コメント一覧</p>
+
+  <!-- このcomments_areaというhtmlのidを取得して、そのdivの部分だけを更新する -->
+  <div class="comments_area">
+    <%= render partial: 'comments/index', locals: {comments: @comments, blog: @blog} %>
+  </div>
+
+  <!-- コメント入力欄を表示するため -->
+  <%= render partial: 'comments/form', local: {comment: @comment, blog: @blog} %>
+
+  <%= link_to '編集', edit_blog_path(@blog) %>
+  <%= link_to '戻る', blogs_path %>
+</div>
