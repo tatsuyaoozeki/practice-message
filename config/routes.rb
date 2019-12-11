@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
-  resources :blogs
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users, controllers: {
+        sessions: 'users/sessions'
+      }
+  root 'blogs#index'
+  resources :blogs do
+    resources :comments do
+      collection do
+        post :confirm
+      end
+    end
+  end
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end
