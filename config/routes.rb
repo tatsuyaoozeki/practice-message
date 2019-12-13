@@ -4,11 +4,11 @@ Rails.application.routes.draw do
       }
   root 'blogs#index'
   resources :blogs do
-    resources :comments do
-      collection do
-        post :confirm
-      end
+    collection do
+      post :confirm
     end
+    # resources :comments do
+    # end
   end
 
   if Rails.env.development?
