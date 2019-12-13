@@ -7,8 +7,8 @@ Rails.application.routes.draw do
     collection do
       post :confirm
     end
-    # resources :comments do
-    # end
+    resources :comments do
+    end
   end
 
   if Rails.env.development?
