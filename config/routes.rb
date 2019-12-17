@@ -14,7 +14,18 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show] do
+    member do
+      get :following
+      get :followers
+    end
+  end
+
+  resources :conversations do
+    resource :messages do
+    end
+  end 
+
   resources :relationships, only: [:create, :destroy]
 
   if Rails.env.development?
