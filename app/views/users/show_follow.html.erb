@@ -1,0 +1,9 @@
+<h1><%= "#{@user.name}さんをフォロー" %></h1>
+
+<ul>
+  <% @user.following.each do |user| %>
+    <li>
+      <%= link_to "#{user.name}", user_path(user) %>
+    </li>
+    <% end %>
+</ul>

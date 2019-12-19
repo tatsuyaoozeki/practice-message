@@ -10,6 +10,24 @@
   </head>
 
   <body>
+    <% if user_signed_in? %>
+    <h2> 現在 <%= current_user.name %> さんがログインしています </h2>
+      <%= link_to "ブログ投稿", blogs_path %>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      <li><%= link_to 'ユーザー一覧', users_path if signed_in? %></li>
+    <% else %>
+    <h2> 現在ログインしていません </h2>
+      <%= link_to "新規登録", new_user_registration_path %>
+      <%= link_to "ログイン", new_user_session_path %>
+    <% end %>
+
+    <% if notice %>
+      <p class="alert alert-notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-error"><%= alert %></p>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
