@@ -13,10 +13,10 @@ class MessagesController < ApplicationController
 
     if params[:m]
       @over_ten = false
-      @messages = @conversation.message
+      @messages = @conversation.messages
     end
 
-    if @message.last
+    if @messages.last
       @messages.where.not(user_id: current_user.id).update_all(read: true)
     end
 
@@ -25,13 +25,17 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = @conversation.message.build(message_params)
+    @message = @conversation.messages.build(message_params)
     if @message.save
       redirect_to conversation_messages_path(@conversation)
     else
       render 'index'
     end
   end
+
+  # def show
+  #
+  # end
 
   private
 

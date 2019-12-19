@@ -22,9 +22,8 @@ Rails.application.routes.draw do
   end
 
   resources :conversations do
-    resource :messages do
-    end
-  end 
+    resources :messages
+  end
 
   resources :relationships, only: [:create, :destroy]
 
