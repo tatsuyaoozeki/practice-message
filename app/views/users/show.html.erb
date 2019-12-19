@@ -1,0 +1,5 @@
+<%= @user.name %>のマイページ
+<br>
+<%= link_to "following: #{@user.following.count}", following_user_path(@user) %>
+
+<%= link_to "followers: #{@user.followers.count}", followers_user_path(@user) %>
